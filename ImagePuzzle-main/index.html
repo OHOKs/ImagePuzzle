@@ -11,7 +11,10 @@
 <body>
     <div id="bg"></div>
     <div class="box">
-        <input class="file-upload-field" type="file" accept="image/*" onchange="previewImage(event)" id="uploadInput" />
+        <label for="images" class="drop-container"  id="uploadInput">
+            <span class="drop-title" id="uploadInput" >Drop files here</span> or <input onchange="previewImage(event)" id="uploadInput" type="file" id="images" accept="image/*" required>
+          </label>
+        <input type="number" min="2" max="4" onchange="Méretezés()"  id="meret">
         <div id="collage">
             <div id="playPanel" style="display:none;">
                 <div style="display:inline-block; vertical-align:top;">
@@ -39,6 +42,10 @@
 	</div>
 	</div>
 	<script>
+        function Méretezés(){
+            document.getElementById("hard").value = document.getElementById("meret").value
+        }
+
         function refreshPage() {
             location.reload();
         }
@@ -112,9 +119,12 @@
         }
 
         function timer() {
-            document.getElementById('uploadInput').hidden = true;
+            document.getElementById('uploadInput').remove()
             document.getElementById('actImg').hidden = false;
+            document.getElementById("meret").hidden = true
             t = setTimeout(add, 1000);
+
+
         }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
