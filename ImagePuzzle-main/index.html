@@ -14,11 +14,11 @@
         <label for="images" class="drop-container"  id="uploadInput">
             <span class="drop-title" id="uploadInput" >Drop files here</span> or <input onchange="previewImage(event)" class="uploadImage" id="uploadInput" type="file" id="images" accept="image/*" required>
           </label>
-        <div class="typesht">Add meg a darabolás nagyságát:</div>
-        <input class="size" type="number" min="2" max="4" onchange="Méretezés()"  id="meret">
+        <div class="typesht" id="h1remove">Add meg a darabolás nagyságát:</div>
+        <input class="size" type="number" min="2" max="4" placeholder="0" onchange="Méretezés()" id="meret">
         <div id="collage">
-            <div id="playPanel" style="display:none;">
-                <div style="display:inline-block; vertical-align:top;">
+            <div id="playPanel">
+                <div>
                     <ul id="sortable"></ul>
                     <div id="actualImageBox">
                         <div id="stepBox">
@@ -29,7 +29,7 @@
                             <div>Rakd ki a példa alapján a képet.</div>
                             <img id="actualImage"/>
                         </div>
-                        <div>Pipáld be az indításhoz</div>
+                        <div class="pipa">Pipáld be az indításhoz</div>
                         <p id="levelPanel">
                             <input type="radio" name="level" id="hard" value="4" onchange="timer()" disabled/>
                         </p>
@@ -121,8 +121,10 @@
 
         function timer() {
             document.getElementById('uploadInput').remove()
-            document.getElementById('actImg').hidden = false;
+            document.getElementById('actImg').hidden = false
             document.getElementById("meret").hidden = true
+            document.getElementById("h1remove").hidden = true
+            document.getElementById("actualImageBox").style.padding = "0px"
             t = setTimeout(add, 1000);
 
 

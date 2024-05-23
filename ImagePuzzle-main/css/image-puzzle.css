@@ -1,5 +1,6 @@
 ﻿body{
-    min-width: 550px;
+    min-width: 700px;
+    min-height: 911px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,23 +11,29 @@
     color: white;
     font-family: 'Times New Roman', Times, serif;
     font-size: 24px;
-    margin-left: 180px;
-    margin-top: 10px;
+    margin-left: 170px;
+    padding: 30px 0 10px;
 }
 
 .size{
     border: 0;
     width: 50px;
-    height: 40px;
+    height: 30px;
+    padding: 5px;
     font-size: xx-large;
     align-items: center;
     text-align: center;
     color: white;
     border-radius: 5px;
-    box-shadow: 0px 10px 20px 10px black;
-    background-color:rgb(174, 0, 174);
+    box-shadow: 0px 10px 30px 10px black;
+    background-color:rgba(0, 0, 0, 0.555);
     margin-top: 10px;
-    margin-left: 275px;
+    margin-left: 291px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 .stepCount{
@@ -34,7 +41,7 @@
 }
 
 .drop-container {
-    margin-top: 110px;
+    margin-top: 150px;
     margin-left: 150px;
     position: absolute;
     display: flex;
@@ -72,8 +79,7 @@
 
 
 #bg{
-    top: 200px;
-    position: absolute;
+    position: relative;
     z-index: -1;
     height: 100vh;
     width: 100%;
@@ -107,17 +113,17 @@
 }
 
 #collage #actualImageBox {
-	float:right;
+    float: right;
     font-size: 1em;
-    margin: 10px 10px;
-    vertical-align: top;
-	
+    padding-top: 80px;
+    margin-top: 55px;
 }
 
 #collage #stepBox div {
     display: inline-block;
 	font-size: 35px;
     margin: 0px auto;
+    padding-bottom: 6px;
 	color:rgb(255, 255, 255);
     font-family: 'Times New Roman', serif;
 	
@@ -126,7 +132,8 @@
 #collage img#actualImage{
     height:140px;
     width:140px;
-	
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -153,9 +160,10 @@
 }
 
 #collage button  {
+    font-weight: bolder;
     background-color:rgb(174, 0, 174);
     border:0;
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 14px;
     height: 30px;
     width: 100px;
@@ -177,26 +185,43 @@
 
 @media screen and (max-width: 1000px) {
     .box{
-        height: 500px;
-        width: 50em;
+        height: 850px;
+        width: 40rem;
     }
+    .drop-container{
 
+    }
+    #collage #sortable{
+        margin-top: 50px;
+        margin-left: 55px;
+    }
+    #collage #actualImageBox {
+        float: none;
+        margin-left: 55px;
+        margin-top: 0;
+        padding-top: 400px;
+    }
+    #collage #actImg{
+        font-size: 15px;
+        float: right;
+        margin-right: 110px;
+        margin-top: -75px;
+    }
+    #collage img#actualImage{
+        height:140px;
+        width:140px;
+        margin-left: 24px;
+        margin-top: 10px;
+    }
+    .size{
+        margin-left: 291px;
+    }
+    .typesht{
+        margin-left: 170px;
+    }
+    #collage .pipa{
+        margin-top: 20px;
+    }
 }
 
-@media screen and (max-width: 850px) {
-    .box{
-        height: 450px;
-        width: 40em;
-    }
-
-}
-
-
-@media screen and (max-width: 680px) {
-    .box{
-        height: 750px;
-        width: 30em;
-    }
-
-}
     
