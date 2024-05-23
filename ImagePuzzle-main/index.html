@@ -12,16 +12,17 @@
     <div id="bg"></div>
     <div class="box">
         <label for="images" class="drop-container"  id="uploadInput">
-            <span class="drop-title" id="uploadInput" >Drop files here</span> or <input onchange="previewImage(event)" id="uploadInput" type="file" id="images" accept="image/*" required>
+            <span class="drop-title" id="uploadInput" >Drop files here</span> or <input onchange="previewImage(event)" class="uploadImage" id="uploadInput" type="file" id="images" accept="image/*" required>
           </label>
-        <input type="number" min="2" max="4" onchange="Méretezés()"  id="meret">
+        <div class="typesht">Add meg a darabolás nagyságát:</div>
+        <input class="size" type="number" min="2" max="4" onchange="Méretezés()"  id="meret">
         <div id="collage">
             <div id="playPanel" style="display:none;">
                 <div style="display:inline-block; vertical-align:top;">
                     <ul id="sortable"></ul>
                     <div id="actualImageBox">
                         <div id="stepBox">
-                            <div>Lépések:</div><div class="stepCount">0</div><br>
+                            <div>Lépések: </div><div class="stepCount">0</div><br>
                             <div>Idő:</div><div id="endTime" style="font-size: 30px;"></div>
                         </div>
                         <div id="actImg" hidden>
@@ -32,7 +33,7 @@
                         <p id="levelPanel">
                             <input type="radio" name="level" id="hard" value="4" onchange="timer()" disabled/>
                         </p>
-                        <button onclick="refreshPage()">Újrakezdés</button>
+                        <button onclick="refreshPage()" class="button">Újrakezdés</button>
                     </div>
                 </div>
             </div>
