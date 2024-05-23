@@ -12,9 +12,11 @@
     <div id="bg"></div>
     <div class="box">
         <label for="images" class="drop-container"  id="uploadInput">
-            <span class="drop-title" id="uploadInput" >Drop files here</span> or <input onchange="previewImage(event)" class="uploadImage" id="uploadInput" type="file" id="images" accept="image/*" required>
+            <span class="drop-title" id="uploadInput" >Drop files here</span>
+            <span class="drop-title2">or</span> 
+            <input onchange="previewImage(event)" class="uploadImage" id="uploadInput" type="file" id="images" accept="image/*" required>
           </label>
-        <div class="typesht" id="h1remove">Add meg a darabolás nagyságát:</div>
+        <div class="typesht" id="h1remove">Add meg a darabolás nagyságát (2-4)</div>
         <input class="size" type="number" min="2" max="4" placeholder="0" onchange="Méretezés()" id="meret">
         <div id="collage">
             <div id="playPanel">
