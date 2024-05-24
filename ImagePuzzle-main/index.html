@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Image Puzzle</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/image-puzzle.css" rel="stylesheet" />
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/image-puzzle.js"></script>
+</head>
+<body>
+    <div id="bg"></div>
+    <div class="box">
+        <label for="images" class="drop-container"  id="uploadInput">
+            <span class="drop-title" id="uploadInput" >Drop files here</span>
+            <span class="drop-title2">or</span> 
+            <input onchange="previewImage(event)" class="uploadImage" id="uploadInput" type="file" id="images" accept="image/*" required>
+          </label>
+        <div class="typesht" id="h1remove">Add meg a darabolás nagyságát (2-4)</div>
+        <input class="size" type="number" min="2" max="4" placeholder="0" onchange="Méretezés()" id="meret">
+        <div id="collage">
+            <div id="playPanel">
+                <div>
+                    <ul id="sortable"></ul>
+                    <div id="actualImageBox">
+                        <div id="stepBox">
+                            <div>Lépések: </div><div class="stepCount">0</div><br>
+                            <div>Idő:</div><div id="endTime" style="font-size: 30px;"></div>
+                        </div>
+                        <div id="actImg" hidden>
+                            <div>Rakd ki a példa alapján a képet.</div>
+                            <img id="actualImage"/>
+                        </div>
+                        <div class="pipa">Pipáld be az indításhoz</div>
+                        <p id="levelPanel">
+                            <input type="radio" name="level" id="hard" value="4" onchange="timer()" disabled/>
+                        </p>
+                        <button onclick="refreshPage()" class="button">Újrakezdés</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div><h1><time>00:00:00</time></h1></div>
+	</div>
+	</div>
+	<script>
+        function Méretezés(){
+            let element = document.getElementById("meret")
+
+            if(element.value > 4){
+                element.value = 4
+            }
+            else if (element.value < 2){
+                element.value = 2
+            }
+
+            document.getElementById("hard").value = element.value
+        }
+
+        function refreshPage() {
+            location.reload();
+        }
+
+        var images = [
+        { src: 'asd' },
+        ];
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const imageType = /^image\//;
+        
+            if (!file.type.match(imageType)) {
+                alert("Csak képfájlok (.jpg, .jpeg, .png) engedélyezettek!");
+                return;
+            }
+        
+            if (file.size > 1048576) {
+                alert("A képfájl mérete nem lehet nagyobb, mint 1MB!");
+                return;
+            }
+        
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = function() {
+                    if (this.width !== 400 || this.height !== 400) {
+                        alert("A kép mérete 400x400 pixel kell legyen!");
+                        return;
+                    }
+                    images.unshift({ src: event.target.result });
+                    document.getElementById('hard').disabled = false;
+                    const preview = document.getElementById("actualImage");
+                    preview.attr('src', event.target.result)
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        $(function () {
+            var gridSize = $('#levelPanel :radio:checked').val();
+            imagePuzzle.startGame(images, gridSize);
+            $('#newPhoto').click(function () {
+                imagePuzzle.startGame(images, gridSize);
+            });
+
+            $('#levelPanel :radio').change(function (e) {
+                var gridSize = $(this).val();
+                imagePuzzle.startGame(images, gridSize);
+            });
+        });
+        var h1 = document.getElementsByTagName('h1')[0]
+        h1.hidden = true
+        seconds = 0, minutes = 0, hours = 0, t;
+
+        function add() {
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes >= 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+
+            h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+            timer();
+        }
+
+        function timer() {
+            document.getElementById('uploadInput').remove()
+            document.getElementById('actImg').hidden = false
+            document.getElementById("meret").hidden = true
+            document.getElementById("h1remove").hidden = true
+            document.getElementById("actualImageBox").style.padding = "0px"
+            t = setTimeout(add, 1000);
+
+
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+    <script>
+    VANTA.HALO({
+    el: "#bg",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    xOffset: 0.00,
+    size: 1.40
+    })
+    </script>
+</body>
+</html>
